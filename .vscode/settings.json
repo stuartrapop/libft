@@ -1,0 +1,9 @@
+{
+  "editor.insertSpaces": false,
+  "editor.comments.insertSpace": false,
+  "editor.detectIndentation": false,
+  "files.associations": {
+    "*.ejs": "plaintext",
+    "string.h": "c"
+  }
+}
