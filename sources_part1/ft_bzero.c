@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapopor <stuartrapop@gmail.com>           +#+  +:+       +#+        */
+/*   By: stuartrapoport <stuartrapoport@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 15:02:12 by srapopor          #+#    #+#             */
-/*   Updated: 2022/09/08 17:23:36 by srapopor         ###   ########.fr       */
+/*   Created: 2022/09/12 10:18:46 by stuartrapop       #+#    #+#             */
+/*   Updated: 2022/09/12 13:29:28 by stuartrapop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
-{
-	int	count;
+#include <string.h>
 
-	count = 0;
-	while (str[count] != '\0')
-		count++;
-	return (count);
+void	ft_bzero(void *s, size_t n)
+{
+	size_t			index;
+	unsigned char	*int_s;
+
+	int_s = s;
+	index = 0;
+	while (index < n)
+	{
+		int_s[index] = '\0';
+		index++;
+	}
 }

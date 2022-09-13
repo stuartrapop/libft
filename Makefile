@@ -1,10 +1,11 @@
 NAME = libft.a
 
-SRCS_PATH = ./sources
+SRCS_PATH_1 = ./sources_part1
+SRCS_PATH_2 = ./sources_part2
 
 OBJS_PATH = ./objects
 
-SRCS_NAME = ft_isalpha.c \
+SRCS_NAME_1 = ft_isalpha.c \
 	ft_isdigit.c \
 	ft_isalnum.c \
 	ft_isascii.c \
@@ -18,14 +19,29 @@ SRCS_NAME = ft_isalpha.c \
 	ft_strnstr.c \
 	ft_strlcpy.c \
 	ft_strlcat.c \
-	ft_memset.c
+	ft_memset.c \
+	ft_memcpy.c \
+	ft_memccpy.c \
+	ft_bzero.c \
+	ft_memmove.c \
+	ft_memchr.c \
+	ft_memcmp.c \
+	ft_atoi.c \
+	ft_strdup.c \
+	ft_calloc.c
 
-SRCS = $(addprefix $(SRCS_PATH)/,$(SRCS_NAME))
+SRCS_NAME_2 = ft_substr.c \
+				ft_strjoin.c \
+				ft_strtrim.c \
+				ft_split.c
+
+SRCS = $(addprefix $(SRCS_PATH_1)/,$(SRCS_NAME_1))
+SRCS += $(addprefix $(SRCS_PATH_2)/,$(SRCS_NAME_2))
 
 OBJS = ${SRCS:.c=.o}
 
 
-HEADER_DIR = ./includes/
+HEADER_DIR = ./
 
 FLAG = -Wall -Wextra -Werror -I$(HEADER_DIR)
 

@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapopor <srapopor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stuartrapoport <stuartrapoport@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 14:48:02 by srapopor          #+#    #+#             */
-/*   Updated: 2022/09/09 15:31:58 by srapopor         ###   ########.fr       */
+/*   Created: 2022/09/12 13:41:19 by stuartrapop       #+#    #+#             */
+/*   Updated: 2022/09/12 15:47:48 by stuartrapop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdio.h>
-#include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
 	size_t	index;
 
-	if (dstsize == 0)
-		return ((size_t)ft_strlen((char *)src));
 	index = 0;
-	while (src[index] != '\0' && index < dstsize - 1)
+	while (index < n)
 	{
-		dst[index] = src[index];
+		if (((unsigned char *)s)[index] == (unsigned char)c)
+			return (&((unsigned char *)s)[index]);
 		index++;
 	}
-	dst[index] = '\0';
-	return ((size_t)ft_strlen((char *)src));
+	return (NULL);
 }

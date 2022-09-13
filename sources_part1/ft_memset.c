@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: srapopor <srapopor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 08:51:27 by srapopor          #+#    #+#             */
-/*   Updated: 2022/09/09 15:34:54 by srapopor         ###   ########.fr       */
+/*   Created: 2022/09/09 17:23:56 by srapopor          #+#    #+#             */
+/*   Updated: 2022/09/09 19:03:27 by srapopor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
-char	*ft_strrchr(const char *s, int c)
+void	*ft_memset(void *str, int c, size_t n)
 {
-	int	length;
-	int	index;
+	unsigned char	*int_str;
+	size_t			index;
 
-	length = ft_strlen((char *)s);
-	if (c == '\0')
-		return ((char *)&s[length]);
-	index = length;
-	while (index > 0)
+	index = 0;
+	int_str = (unsigned char *)str;
+	while (index < n)
 	{
-		index--;
-		if (c == s[index])
-			return ((char *)&s[index]);
+		int_str[index] = (unsigned char)c;
+		index++;
 	}
-	return (NULL);
+	return ((void *)str);
 }

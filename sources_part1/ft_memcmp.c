@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapopor <srapopor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stuartrapoport <stuartrapoport@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 17:23:56 by srapopor          #+#    #+#             */
-/*   Updated: 2022/09/09 17:50:18 by srapopor         ###   ########.fr       */
+/*   Created: 2022/09/12 13:50:47 by stuartrapop       #+#    #+#             */
+/*   Updated: 2022/09/12 15:52:49 by stuartrapop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdio.h>
 
-void *ft_memset(void *str, int c, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char *int_str;
-	size_t index;
+	size_t	index;
 
 	index = 0;
-	int_str = (unsigned char *)str;
 	while (index < n)
 	{
-		int_str[index] = (unsigned char)c;
+		if (((unsigned char *)s1)[index] != ((unsigned char *)s2)[index])
+			return (((unsigned char *)s1)[index] - \
+				((unsigned char *)s2)[index]);
 		index++;
 	}
-	return ((void *)str);
+	return (0);
 }
