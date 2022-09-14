@@ -6,7 +6,7 @@
 /*   By: srapopor <srapopor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:35:31 by srapopor          #+#    #+#             */
-/*   Updated: 2022/09/13 16:35:58 by srapopor         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:18:01 by srapopor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,22 @@ static int	ft_number_pieces(char const *s, char c)
 	return (count);
 }
 
-static char	*ft_get_piece(char const *s, char c)
+static void	*ft_free_array(char **array_of_pieces, int piece_number)
+{
+	int	index;
+
+	index = 0;
+	while (index < piece_number)
+	{
+		free(array_of_pieces[index]);
+		index++;
+	}
+	free(array_of_pieces);
+	return (NULL);
+}
+
+static int	ft_get_piece(char **array_of_pieces, int *piece_number, \
+	char const *s, char c)
 {
 	int		length;
 	int		index;
@@ -47,15 +62,20 @@ static char	*ft_get_piece(char const *s, char c)
 	while (s[length] != '\0' && s[length] != (const char)c)
 		length++;
 	new_piece = malloc(sizeof(char) * (length + 1));
-	if (!new_piece)
-		return (NULL);
+	if (new_piece == NULL)
+	{
+		ft_free_array(array_of_pieces, *piece_number);
+		return (0);
+	}
 	while (s[index] != '\0' && s[index] != (const char)c)
 	{
 		new_piece[index] = s[index];
 		index++;
 	}
 	new_piece[index] = '\0';
-	return (new_piece);
+	array_of_pieces[*piece_number] = new_piece;
+	(*piece_number)++;
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
@@ -76,8 +96,8 @@ char	**ft_split(char const *s, char c)
 		if (!in_piece && *s != (const char)c)
 		{
 			in_piece = 1;
-			array_of_pieces[piece_number] = ft_get_piece(s, c);
-			piece_number++;
+			if (!ft_get_piece(array_of_pieces, &piece_number, s, c))
+				return (NULL);
 		}
 		if (in_piece && *s == (const char)c)
 			in_piece = 0;

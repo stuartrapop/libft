@@ -2,6 +2,7 @@ NAME = libft.a
 
 SRCS_PATH_1 = ./sources_part1
 SRCS_PATH_2 = ./sources_part2
+SRCS_PATH_BONUS = ./sources_bonus
 
 OBJS_PATH = ./objects
 
@@ -33,12 +34,28 @@ SRCS_NAME_1 = ft_isalpha.c \
 SRCS_NAME_2 = ft_substr.c \
 				ft_strjoin.c \
 				ft_strtrim.c \
-				ft_split.c
+				ft_split.c \
+				ft_itoa.c \
+				ft_strmapi.c \
+				ft_striteri.c \
+				ft_putchar_fd.c \
+				ft_putstr_fd.c \
+				ft_putendl_fd.c \
+				ft_putnbr_fd.c
+
+SRCS_NAME_BONUS = ft_lstnew.c \
+					ft_lstadd_front.c \
+					ft_lstsize.c \
+					ft_lstlast.c \
+					ft_lstadd_back.c
 
 SRCS = $(addprefix $(SRCS_PATH_1)/,$(SRCS_NAME_1))
 SRCS += $(addprefix $(SRCS_PATH_2)/,$(SRCS_NAME_2))
+SRCS_BONUS = $(addprefix $(SRCS_PATH_BONUS)/,$(SRCS_NAME_BONUS))
 
 OBJS = ${SRCS:.c=.o}
+
+OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 
 
 HEADER_DIR = ./
@@ -56,6 +73,9 @@ CC = GCC $(FLAG)
 
 ${NAME} : ${OBJS}
 	ar rcs $(NAME) $(OBJS)
+
+bonus: $(OBJS) $(OBJS_BONUS)
+	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
 
 all : ${NAME}
 
