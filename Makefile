@@ -47,7 +47,11 @@ SRCS_NAME_BONUS = ft_lstnew.c \
 					ft_lstadd_front.c \
 					ft_lstsize.c \
 					ft_lstlast.c \
-					ft_lstadd_back.c
+					ft_lstadd_back.c \
+					ft_lstdelone.c \
+					ft_lstclear.c \
+					ft_lstiter.c \
+					ft_lstmap.c
 
 SRCS = $(addprefix $(SRCS_PATH_1)/,$(SRCS_NAME_1))
 SRCS += $(addprefix $(SRCS_PATH_2)/,$(SRCS_NAME_2))
@@ -80,7 +84,7 @@ bonus: $(OBJS) $(OBJS_BONUS)
 all : ${NAME}
 
 clean :
-	rm -f ${OBJS}
+	rm -f ${OBJS} $(OBJS_BONUS)
 fclean : clean
 	rm -f ${NAME}
 re : fclean all
