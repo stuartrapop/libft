@@ -6,39 +6,44 @@
 /*   By: srapopor <srapopor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 09:10:36 by srapopor          #+#    #+#             */
-/*   Updated: 2022/09/15 11:36:32 by srapopor         ###   ########.fr       */
+/*   Updated: 2022/10/10 11:12:37 by srapopor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
+static t_list	*ft_clear_free(t_list **lst, void (*del)(void *))
+{
+	ft_lstclear(lst, del);
+	free(*lst);
+	return (NULL);
+}
+
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*head;
 	t_list	*current;
 
-	if (lst == NULL)
+	if (!lst)
 		return (NULL);
 	head = malloc(sizeof(t_list));
 	if (!head)
 		return (NULL);
-	head->content = (*f)(lst->content);
-	head->next = NULL;
 	current = head;
-	while (lst->next != NULL)
+	while (lst != NULL)
 	{
-		lst = lst->next;
-		current->next = malloc(sizeof(t_list));
-		if (current->next == NULL)
-		{
-			ft_lstclear(&head, del);
-			free(head);
-			return (NULL);
-		}
-		current = current->next;
 		current->content = (*f)(lst->content);
-		current->next = NULL;
+		if (lst -> next != NULL)
+		{
+			current->next = malloc(sizeof(t_list));
+			if (current->next == NULL)
+				return (ft_clear_free(&head, del));
+		}
+		else
+			current->next = NULL;
+		current = current->next;
+		lst = lst->next;
 	}
 	return (head);
 }
